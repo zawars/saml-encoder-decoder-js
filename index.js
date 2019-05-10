@@ -30,7 +30,7 @@ function decodeSamlRedirect(encoded, cb) {
 
   zlib.inflateRaw(deflated, function (err, inflated) {
     if (!err) {
-      return cb(null, inflated.toString('ascii'));
+      return cb(null, inflated.toString('utf8'));
     } else {
       return cb(err);
     }
@@ -48,5 +48,5 @@ function decodeSamlPost(encoded, cb) {
   if (encoded == null || encoded == "") {
     return cb(new Error('Cannot decode null string'));
   }
-  return cb(null, new Buffer(encoded, 'base64').toString('ascii'));
+  return cb(null, new Buffer(encoded, 'base64').toString('utf8'));
 }
